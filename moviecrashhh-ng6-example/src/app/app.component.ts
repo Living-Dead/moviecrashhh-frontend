@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'moviecrashhh-ng6-example';
+	app = {
+		name: 'moviecrashhh-ng6-example',
+		header: 'HEADER',
+		testValue: 'movie crashhh test text',
+		id: 1000,
+	}
 }
