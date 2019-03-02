@@ -20,6 +20,6 @@ export class HeaderComponent implements OnInit {
     name: this.headerData,
   }
   console.log('header', this.header);
-    console.log(this.headerData.id + 20);
+    console.log('headerData',this.headerData.id + 20);
   }
 }
