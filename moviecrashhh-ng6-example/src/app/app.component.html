@@ -1,8 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="header-container">
+<div class="header">
   <app-header [header]="app"></app-header>
-
-  <div class="content">
-    <router-outlet></router-outlet>
-  </div>
+</div>
+<div class="content">
+	<app-blog></app-blog>
+	<router-outlet></router-outlet>
+</div>
+<div class="footer">
+	<app-footer></app-footer>
 </div>
