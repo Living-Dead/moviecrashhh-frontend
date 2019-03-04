@@ -9,6 +9,7 @@ export class AppComponent {
 	app = {
 		name: 'moviecrashhh-ng6-example',
 		header: 'HEADER',
+		footer: 'FOOTER',
 		testValue: 'movie crashhh test text',
 		id: 1000,
 	}
