@@ -7,6 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BlogComponent } from './blog/blog.component';
 import { ArticleViewComponent } from './article-view/article-view.component';
+import { HttpClientModule } from '@angular/common/http';
+
+import { ApiService } from './api.service';
+
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalBasic } from './modal-basic';
 
 @NgModule({
   declarations: [
@@ -14,13 +21,16 @@ import { ArticleViewComponent } from './article-view/article-view.component';
     HeaderComponent,
     FooterComponent,
     BlogComponent,
-    ArticleViewComponent
+    ArticleViewComponent,
+    NgbdModalBasic
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot(),
+    HttpClientModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ApiService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
