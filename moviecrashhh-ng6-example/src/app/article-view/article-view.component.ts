@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; 
+import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalBasic } from '../modal-basic';
+import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-article-view',
@@ -7,26 +12,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./article-view.component.scss']
 })
 export class ArticleViewComponent implements OnInit {
-		public url: string = "";
-    public msg = "";
-    nCnt: number = 0;
-constructor(private router : Router) {
+  public url: string = "";
+  closeResult: string;
+  articleModalData: Object;
+  obj: any;
+  condition: boolean;
 
-}
+  data$: Object;
 
-  clickMe(x: number) {
-      this.nCnt = this.nCnt + 1;
-      this.msg = "Clicked: " + this.nCnt;
+  constructor(
+    private router : Router,
+    private modalService: NgbModal,
+    private apiService: ApiService,
+  ) {}
 
-      console.log('click', this.msg, x);
+  open(content, articleData) {
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false
+    };
+    let favourite: any;
+    this.articleModalData = articleData.data;
+    this.modalService.open(content, ngbModalOptions).result.then((result) => {
+      console.log('result', result);
+      this.favourite(favourite);
+    }, (reason) => {
+      // TODO
+    });
   }
 
-        
+  private favourite(data: any): any {
+    console.log('click', data);
+    // TODO
+    // call apiService
+  }
 
-        ngOnInit() {
-            console.log(this.router.url);
-
-
-        }
-
+  ngOnInit() {
+    console.log(this.router.url);
+    this.apiService.getData('ok').subscribe((data) => { 
+      this.data$ = data;
+        console.log('data', data);
+      }
+     );
+    console.log(this.data$);
+  }
 }
