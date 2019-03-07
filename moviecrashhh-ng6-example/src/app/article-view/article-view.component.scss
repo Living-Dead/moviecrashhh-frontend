@@ -1,6 +1,8 @@
 .favourite {
   -webkit-box-align: center;
   -ms-flex-align: center;
+   -webkit-box-pack: center;
+  -ms-flex-pack: center;
   align-items: center;
   background: #0057ff;
   border-radius: 50%;
@@ -9,13 +11,10 @@
   display: -ms-flexbox;
   display: flex;
   height: 65px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   width: 65px;
   right: 2%;
   top: 50%;
-
   position: fixed;
   z-index: 9999;
   outline: none;

@@ -1,10 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalBasic } from '../modal-basic';
-import { ApiService } from '../api.service';
-import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { ModalTemplateComponent } from '../modal-template/modal-template.component';
 
 @Component({
   selector: 'app-article-view',
@@ -13,47 +10,49 @@ import { Observable } from 'rxjs';
 })
 export class ArticleViewComponent implements OnInit {
   public url: string = "";
-  closeResult: string;
+   closeResult: string;
   articleModalData: Object;
   obj: any;
-  condition: boolean;
+  modalRef: any;
+  private click (content) {
 
-  data$: Object;
+  }
 
-  constructor(
-    private router : Router,
-    private modalService: NgbModal,
-    private apiService: ApiService,
-  ) {}
-
-  open(content, articleData) {
+  constructor(private modalService: NgbModal,private router : Router) { 
+  
     let ngbModalOptions: NgbModalOptions = {
       backdrop : 'static',
       keyboard : false
     };
-    let favourite: any;
-    this.articleModalData = articleData.data;
-    this.modalService.open(content, ngbModalOptions).result.then((result) => {
+    //this.articleModalData = articleData.data;
+    // Add ModalTemplateComponent
+    this.modalService.open(ModalTemplateComponent,ngbModalOptions).result.then((result) => {
       console.log('result', result);
-      this.favourite(favourite);
+   
     }, (reason) => {
       // TODO
     });
-  }
 
-  private favourite(data: any): any {
-    console.log('click', data);
-    // TODO
-    // call apiService
+
   }
 
   ngOnInit() {
-    console.log(this.router.url);
-    this.apiService.getData('ok').subscribe((data) => { 
-      this.data$ = data;
-        console.log('data', data);
-      }
-     );
-    console.log(this.data$);
+
+    this.obj = {data: 1000};
+  
+       this.router.events.subscribe(event => {
+  if (this.router.url !== '/article-view/filmek/2019-01-01') {
+
+
+        // close all open modals
+        this.modalService.dismissAll();        
+
+          }
+
+    });
+
+
+
   }
+
 }
