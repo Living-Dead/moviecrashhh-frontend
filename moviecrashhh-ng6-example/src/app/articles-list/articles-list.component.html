@@ -1,6 +1,3 @@
-<p>
-  articles-list works!
-</p>
 <ng-template #content let-modal>
   <div>
     <div>
@@ -29,4 +26,15 @@
     </div>
   </div>
 </ng-template>
-<div (click)="open(content)">Launch demo modal</div>
+<p>
+  article-view works!
+</p>
+<div *ngIf="!this.data$">
+  <span> Jelenleg még nincsenek cikkek ebben a kategóriában.</span>
+</div>
+<div *ngFor="let item of this.data$ | keyvalue">
+  <div>{{item.value | json}}</div>
+  <p> test ... </p>
+  <div (click)="open(content, item.value)">Launch demo modal</div>
+</div>
+

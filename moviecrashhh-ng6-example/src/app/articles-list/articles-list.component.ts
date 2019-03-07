@@ -1,7 +1,10 @@
-import { Component, OnInit} from '@angular/core';
-import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ArticleViewComponent } from '../article-view/article-view.component';
+import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbdModalBasic } from '../modal-basic';
+import { ApiService } from '../api.service';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-articles-list',
@@ -9,47 +12,48 @@ import { ArticleViewComponent } from '../article-view/article-view.component';
   styleUrls: ['./articles-list.component.scss']
 })
 export class ArticlesListComponent implements OnInit {
-	public url: string = "";
-	 closeResult: string;
+  public url: string = "";
+  closeResult: string;
   articleModalData: Object;
   obj: any;
-  modalRef: any;
-  private click (content) {
+  condition: boolean;
+  data$: Object;
 
-  }
+  constructor(
+    private router : Router,
+    private modalService: NgbModal,
+    private apiService: ApiService,
+  ) {}
 
-  constructor(private modalService: NgbModal,private router : Router) { 
-  
-  	let ngbModalOptions: NgbModalOptions = {
+  open(content, articleData) {
+    console.log(content);
+    let ngbModalOptions: NgbModalOptions = {
       backdrop : 'static',
       keyboard : false
     };
-    //this.articleModalData = articleData.data;
-    this.modalService.open(ArticleViewComponent, ngbModalOptions).result.then((result) => {
+    let favourite: any;
+    this.articleModalData = articleData.data;
+    this.modalService.open(content, ngbModalOptions).result.then((result) => {
       console.log('result', result);
-   
+      this.favourite(favourite);
     }, (reason) => {
       // TODO
     });
+  }
 
-
+  private favourite(data: any): any {
+    console.log('click', data);
+    // TODO
+    // call apiService
   }
 
   ngOnInit() {
-  
-  	   this.router.events.subscribe(event => {
-	if (this.router.url !== '/articles-list/list/2019-01-02') {
-
-
-        // close all open modals
-        this.modalService.dismissAll();        
-
-        	}
-
-    });
-
-
-
+    console.log(this.router.url);
+    this.apiService.getData('ok').subscribe((data) => { 
+      this.data$ = data;
+        console.log('data', data);
+      }
+     );
+    console.log(this.data$);
   }
-
 }
