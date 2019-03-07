@@ -1,8 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:400,400i,600,600i');
-html,body{
-  margin:0;
-  height:120%;
+
+html,
+body {
+
+  margin: 0;
+  height: 120%;
   font-family: 'Josefin Sans', sans-serif;
+
+  .modal-dialog {
+    margin-top: 60px;
+    max-width: 80% !important;
+    width: 80% !important;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: -45px;
+    color: white;
+    right: 0;
+    font-size: 1.8rem;
+    font-weight: 300;
+    line-height: 1;
+    text-shadow: none;
+    opacity: 1;
+    cursor: pointer;
+
+    &:hover {
+      color: red;
+    }
+  }
+
+  .fade {
+    transition: opacity .15s linear;
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  figcaption {
+    position: absolute;
+    top: -45px;
+    color: white;
+  }
 
 }

@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
+	blog: any;
+
   constructor() { }
 
   ngOnInit() {
+  	this.blog = 'dfjhjkfhskjfhsd'
   }
 
 }
