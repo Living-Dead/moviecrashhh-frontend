@@ -11,16 +11,17 @@ import { ArticleViewComponent } from '../article-view/article-view.component';
 })
 export class ModalTemplateComponent implements OnInit {
 
-  constructor(private modalService: NgbModal, private router : Router) { }
+    constructor(private modalService: NgbModal, private router : Router) { }
 
-public close() {
+	public close() {
   		this.modalService.dismissAll(); 
   		this.router.navigate(['/articles-list/list/2019-01-02']);		
   	}
-  ngOnInit() {
-  	console.log(this.router.url);
-  	// router.url 
-  	// TODO api call
-  }
+
+    ngOnInit() {
+	  console.log(this.router.url);
+	  // router.url
+	  // TODO api call
+    }
 
 }
