@@ -11,9 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ApiService } from './api.service';
 
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbdModalBasic } from './modal-basic';
+import { ArticlesListComponent } from './articles-list/articles-list.component';
+import { ModalTemplateComponent } from './modal-template/modal-template.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { NgbdModalBasic } from './modal-basic';
     FooterComponent,
     BlogComponent,
     ArticleViewComponent,
-    NgbdModalBasic
+    NgbdModalBasic,
+    ArticlesListComponent,
+    ModalTemplateComponent
   ],
   imports: [
     BrowserModule,
@@ -32,5 +35,6 @@ import { NgbdModalBasic } from './modal-basic';
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
+  entryComponents: [ ModalTemplateComponent ]
 })
 export class AppModule { }
