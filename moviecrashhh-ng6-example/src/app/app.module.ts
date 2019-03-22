@@ -1,26 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { BlogComponent } from './blog/blog.component';
-import { ArticleViewComponent } from './article-view/article-view.component';
-import { HttpClientModule } from '@angular/common/http';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
+
 import { AuthGuard } from './guards/auth.guard';
 
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalBasic } from './modal-basic';
-import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { ModalTemplateComponent } from './modal-template/modal-template.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProfileComponent } from './profile/profile.component';
+import { ModalTemplateComponent } from './components/modal-template/modal-template.component';
+import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { ArticleViewComponent } from './components/article-view/article-view.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,6 @@ import { ProfileComponent } from './profile/profile.component';
     FooterComponent,
     BlogComponent,
     ArticleViewComponent,
-    NgbdModalBasic,
     ArticlesListComponent,
     ModalTemplateComponent,
     LoginComponent,

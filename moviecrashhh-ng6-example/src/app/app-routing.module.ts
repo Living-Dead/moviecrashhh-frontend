@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { BlogComponent } from './blog/blog.component';
-import { ArticleViewComponent } from './article-view/article-view.component';
-import { ArticlesListComponent } from './articles-list/articles-list.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
+import { BlogComponent } from './components/blog/blog.component';
+import { ArticleViewComponent } from './components/article-view/article-view.component';
+import { ArticlesListComponent } from './components/articles-list/articles-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 import { AuthGuard } from './guards/auth.guard';
-
 
 
 const routes: Routes = [

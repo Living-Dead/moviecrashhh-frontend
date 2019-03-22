@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdModalBasic } from '../modal-basic';
-import { ApiService } from '../api.service';
+import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 
 
@@ -20,16 +19,16 @@ export class ArticlesListComponent implements OnInit {
   data$: Object;
 
   constructor(
-    private router : Router,
+    private router: Router,
     private modalService: NgbModal,
     private apiService: ApiService,
-  ) {}
+  ) { }
 
   open(content, articleData) {
     console.log(content);
     let ngbModalOptions: NgbModalOptions = {
-      backdrop : 'static',
-      keyboard : false
+      backdrop: 'static',
+      keyboard: false
     };
     let favourite: any;
     this.articleModalData = articleData.data;
@@ -49,11 +48,10 @@ export class ArticlesListComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.router.url);
-    this.apiService.getData('ok').subscribe((data) => { 
+    this.apiService.getData('ok').subscribe((data) => {
       this.data$ = data;
-        console.log('data', data);
-      }
-     );
-    console.log(this.data$);
+      console.log('data', data);
+    }
+    );
   }
 }

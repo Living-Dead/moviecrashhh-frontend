@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Config } from "../config-enum";
-import { ApiService } from '../services/api.service';
+import { Config } from "../../config-enum";
+import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 
 @Component({

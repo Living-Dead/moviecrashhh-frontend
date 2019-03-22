@@ -17,9 +17,9 @@ export class FooterComponent implements OnInit {
 
   ngOnInit() {
     this.footer = {
-    name: this.footerData,
-  }
-  console.log('footer', this.footer);
-    console.log('footerData',this.footerData.id + 20);
+      name: this.footerData,
+    }
+    console.log('footer', this.footer);
+    console.log('footerData', this.footerData.id + 20);
   }
 }
