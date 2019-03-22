@@ -1,6 +1,11 @@
-<div class="btn btn-primary">Login</div>
-<div class="btn btn-primary">Register</div>
+<div *ngIf="!this.auth.isLoggedIn" routerLink="/login/" class="btn btn-primary">Login</div>
+<div routerLink="/register/" class="btn btn-primary">Register</div>
+<button *ngIf="this.auth.isLoggedIn" (click)="logout('logout')"> logout </button>
 <h1 [textContent]="this.headerData.header"></h1>
 <a routerLink="">blog</a>
 <a routerLink="/articles-list/list/2019-01-02">list</a>
 <a routerLink="/article-view/header/2019-01-01">link</a>
+<br>
+<a routerLink="/profile/">profile</a>
+<br>
+
