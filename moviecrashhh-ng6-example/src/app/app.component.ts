@@ -2,12 +2,15 @@ import { Component } from '@angular/core';
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
 import { Observable } from 'rxjs';
+import { Account } from './enums/account-enum';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent {
   app = {
     name: 'moviecrashhh-ng6-example',
@@ -23,6 +26,7 @@ export class AppComponent {
 
     this.auth.account().subscribe((data) => {
       this.account$ = data;
+      Account.user = data;
       console.log(data);
       if (!this.account$.account.isLoggedIn) {
         localStorage.removeItem('loggedIn');
