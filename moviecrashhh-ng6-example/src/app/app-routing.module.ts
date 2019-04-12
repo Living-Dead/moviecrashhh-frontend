@@ -7,6 +7,7 @@ import { ArticlesListComponent } from './components/articles-list/articles-list.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ArticlesListChildComponent } from './articles-list-child/articles-list-child.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -21,8 +22,14 @@ const routes: Routes = [
 		component: ArticleViewComponent
 	},
 	{
-		path: 'articles-list/:id/:id1:id2',
-		component: ArticlesListComponent
+		path: 'articles-list/:id',
+		component: ArticlesListComponent,
+		children:
+			[
+				{
+					path: ':id', component: ArticlesListChildComponent
+				},
+			]
 	},
 	{
 		path: 'login',
