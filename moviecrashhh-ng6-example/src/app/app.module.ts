@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { ApiService } from './services/api.service';
 import { AuthService } from './services/auth.service';
+import { DataService } from './services/data.service';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -21,6 +22,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ArticleViewComponent } from './components/article-view/article-view.component';
+import { ArticlesListChildComponent } from './articles-list-child/articles-list-child.component';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import { ArticleViewComponent } from './components/article-view/article-view.com
     ModalTemplateComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    ArticlesListChildComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +48,14 @@ import { ArticleViewComponent } from './components/article-view/article-view.com
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    StoreModule.forRoot(reducers, {}),
   ],
-  providers: [ApiService, AuthService, AuthGuard],
+  providers: [
+    ApiService,
+    AuthService,
+    AuthGuard,
+    DataService,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ModalTemplateComponent]
 })
