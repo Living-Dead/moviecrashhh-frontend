@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 
+import { Account } from '../../enums/account-enum';
+
 @Component({
 	selector: 'app-blog',
 	templateUrl: './blog.component.html',
@@ -13,13 +15,17 @@ export class BlogComponent implements OnInit {
 	account$: any;
 
 	constructor(private auth: AuthService) {
+		console.log('enum account user', Account.user);
 
-		this.auth.account().subscribe((data) => {
-			this.account$ = data;
-			console.log('blog', data);
-			this.auth.setLoggedIn(this.account$.account.isLoggedIn);
+		if (Account.user) {
+			this.auth
+				.account()
+				.subscribe((data) => {
+					this.account$ = data;
+					this.auth.setLoggedIn(this.account$.account.isLoggedIn);
+				}
+				);
 		}
-		);
 	}
 
 	ngOnInit() {

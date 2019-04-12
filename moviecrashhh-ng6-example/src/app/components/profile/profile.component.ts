@@ -12,17 +12,22 @@ export class ProfileComponent implements OnInit {
 	profile: any;
 	account$: any;
 
-	constructor(private auth: AuthService,
-		private router: Router) {
-		this.auth.account().subscribe((data) => {
-			this.account$ = data;
-			console.log('data account', data);
-			if (!this.account$.account.isLoggedIn) {
-				this.router.navigate(['/login']);
+	constructor(
+		private auth: AuthService,
+		private router: Router,
+	) {
+
+		this.auth
+			.account()
+			.subscribe((data) => {
+				this.account$ = data;
+				console.log('data account', data);
+				if (!this.account$.account.isLoggedIn) {
+					this.router.navigate(['/login']);
+				}
+				this.profile = data;
 			}
-			this.profile = data;
-		}
-		);
+			);
 	}
 
 	ngOnInit() {

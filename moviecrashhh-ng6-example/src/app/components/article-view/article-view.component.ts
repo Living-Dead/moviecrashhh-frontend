@@ -14,11 +14,11 @@ export class ArticleViewComponent implements OnInit {
   articleModalData: Object;
   obj: any;
   modalRef: any;
-  private click(content) {
 
-  }
-
-  constructor(private modalService: NgbModal, private router: Router) {
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+  ) {
 
     let ngbModalOptions: NgbModalOptions = {
       backdrop: 'static',

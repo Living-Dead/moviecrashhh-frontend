@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from '../../services/api.service';
+import { DataService } from '../../services/data.service';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { Data } from '../../enums/data-enum';
 
 
 @Component({
@@ -11,47 +14,71 @@ import { Observable } from 'rxjs';
   styleUrls: ['./articles-list.component.scss']
 })
 export class ArticlesListComponent implements OnInit {
-  public url: string = "";
+  public url: any;
   closeResult: string;
   articleModalData: Object;
   obj: any;
   condition: boolean;
-  data$: Object;
+  data$: any = [];
 
   constructor(
     private router: Router,
     private modalService: NgbModal,
     private apiService: ApiService,
-  ) { }
+    private dataService: DataService,
+    private activatedRoute: ActivatedRoute,
+  ) {
 
-  open(content, articleData) {
-    console.log(content);
-    let ngbModalOptions: NgbModalOptions = {
-      backdrop: 'static',
-      keyboard: false
-    };
-    let favourite: any;
-    this.articleModalData = articleData.data;
-    this.modalService.open(content, ngbModalOptions).result.then((result) => {
-      console.log('result', result);
-      this.favourite(favourite);
-    }, (reason) => {
-      // TODO
-    });
+    if (Data.flag === 0) {
+      console.log('----- API CALL ------');
+      Data.values = this.apiService.getData().pipe(map((res) => res));
+    }
+
+    this.router.routeReuseStrategy
+      .shouldReuseRoute = function() {
+        return false;
+      }
+
+    this.router.events
+      .subscribe((evt) => {
+        if (evt instanceof NavigationEnd) {
+          this.router.navigated = false;
+          window.scrollTo(0, 0);
+        }
+      });
+  }
+
+  private open() {
+    this.dataService.set(this.router.url);
+    this.router.navigateByUrl('/article-view/header/2019-01-01');
   }
 
   private favourite(data: any): any {
     console.log('click', data);
     // TODO
     // call apiService
+    // websocket maybe
   }
 
   ngOnInit() {
-    console.log(this.router.url);
-    this.apiService.getData('ok').subscribe((data) => {
-      this.data$ = data;
-      console.log('data', data);
-    }
-    );
+    console.log('url', this.router.url);
+    this.url = this.router.url.split("/");
+
+    Data.values
+      .subscribe((data) => {
+        Data.flag = 1;
+        for (let entry in data) {
+          if (data[entry].type === this.url[2]) {
+            if (typeof this.url[3] !== 'undefined') {
+              if (data[entry].genre.indexOf(this.url[3]) !== -1) {
+                console.log('hdasjldh', data[entry]);
+                this.data$.push(data[entry]);
+              }
+            } else {
+              this.data$.push(data[entry]);
+            }
+          }
+        };
+      });
   }
 }

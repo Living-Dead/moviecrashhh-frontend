@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Config } from "../../config-enum";
+import { Config } from '../../config-enum';
 import { ApiService } from '../../services/api.service';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,8 @@ export class RegisterComponent implements OnInit {
 
     constructor(
         private formBuilder: FormBuilder,
-        private apiService: ApiService) { }
+        private apiService: ApiService,
+    ) { }
 
     ngOnInit() {
 
@@ -89,13 +90,15 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        this.apiService.register(this.registerForm.value).subscribe((data) => {
-            this.register$ = data;
-            console.log('data', data);
-            if (this.register$.success) {
-                alert('SUCCESS!! :-)')
+        this.apiService
+            .register(this.registerForm.value)
+            .subscribe((data) => {
+                this.register$ = data;
+                console.log('data', data);
+                if (this.register$.success) {
+                    alert('SUCCESS!! :-)')
+                }
             }
-        }
-        );
+            );
     }
 }

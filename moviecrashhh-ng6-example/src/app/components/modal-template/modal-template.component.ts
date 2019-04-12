@@ -3,6 +3,8 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal, NgbModule, NgbModalOptio
 import { Router } from '@angular/router';
 import { ArticleViewComponent } from '../article-view/article-view.component';
 
+import { DataService } from '../../services/data.service';
+
 
 @Component({
   selector: 'app-modal-template',
@@ -11,17 +13,23 @@ import { ArticleViewComponent } from '../article-view/article-view.component';
 })
 export class ModalTemplateComponent implements OnInit {
 
-    constructor(private modalService: NgbModal, private router : Router) { }
+  constructor(
+    private modalService: NgbModal,
+    private router: Router,
+    private dataService: DataService,
+  ) { }
 
-	public close() {
-  		this.modalService.dismissAll(); 
-  		this.router.navigate(['/articles-list/list/2019-01-02']);		
-  	}
 
-    ngOnInit() {
-	  console.log(this.router.url);
-	  // router.url
-	  // TODO api call
-    }
+  public close() {
+    this.modalService.dismissAll();
+    this.router.navigate([this.dataService.getData]);
+  }
+
+  ngOnInit() {
+    console.log('modal', this.dataService.getData);
+    console.log(this.router.url);
+    // router.url
+    // TODO api call
+  }
 
 }

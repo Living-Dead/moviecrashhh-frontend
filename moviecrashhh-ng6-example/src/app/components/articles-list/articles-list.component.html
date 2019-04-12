@@ -3,11 +3,11 @@
     <div>
       <figcaption>
         This is the article names
-        <p>{{this.articleModalData.address}}</p>
+        <p>Bla bla bla</p>
       </figcaption>
       <div>
-        <h4 class="modal-title" id="modal-basic-title">{{this.articleModalData.id}}</h4>
-        <div class="close modal-close" aria-label="Close" (click)="modal.dismiss('close')">
+        <h4 class="modal-title" id="modal-basic-title">Title</h4>
+        <div class="close modal-close" aria-label="Close" (click)="closeModal(this.articleModalData.url)">
           <span aria-hidden="true">&times;</span>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <span> {{this.articleModalData | json}} </span>
       </div>
       <div>
-        {{this.articleModalData.address}}
+        Szoveg
         <div>
           click
         </div>
@@ -29,14 +29,14 @@
 <p>
   article-view works!
 </p>
+<router-outlet></router-outlet>
 <div *ngIf="!this.data$">
   <span> Jelenleg még nincsenek cikkek ebben a kategóriában.</span>
 </div>
 <div *ngFor="let item of this.data$ | keyvalue">
   --- --- ---
   <div>{{item.key | json}}</div>
-  <div >{{item.value | json}}</div>
+  <div>{{item.value | json}}</div>
   <p> test ... </p>
   <div (click)="open(content, item.value)">Launch demo modal</div>
 </div>
-
