@@ -14,12 +14,19 @@ export class AuthService {
   }
 
   get isLoggedIn() {
-    return JSON.parse(localStorage.getItem('loggedIn') || this.loggedInStatus.toString());
+    return JSON.parse(localStorage.getItem('loggedIn'));
   }
 
   constructor(private http: HttpClient) { }
 
   account() {
     return this.http.get('http://localhost:8080/account', { withCredentials: true });
+  }
+
+  logOut(logout) {
+    let data = {
+      "logout": logout,
+    }
+    return this.http.post('http://localhost:8080/logout', data, { withCredentials: true });
   }
 }
