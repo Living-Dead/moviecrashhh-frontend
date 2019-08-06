@@ -3,6 +3,7 @@
 <button *ngIf="this.auth.isLoggedIn" (click)="logout('logout')"> logout </button>
 <h1 [textContent]="this.headerData.header"></h1>
 <a routerLink="">blog</a>
+<h2><a routerLink="/articles-list/series/">Sorozatok</a></h2>
 <h2><a routerLink="/articles-list/movie/">Filmek</a></h2>
 <ul>
   <li><a routerLink="/articles-list/movie/horror/">Horror</a></li>

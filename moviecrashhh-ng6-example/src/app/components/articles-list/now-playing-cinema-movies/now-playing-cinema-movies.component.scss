@@ -1,0 +1,33 @@
+p {
+  font-family: Lato;
+}
+
+.example-card {
+  max-width: 140px;
+  margin: 5px;
+}
+
+img {
+	height: 200px;
+}
+
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+.movie-name {
+	color: white;
+	display: block;
+}
+
+.movie-release-date {
+	color: lightblue;
+	display: block;
+}
+
+.slider-img {
+  &:hover {
+    border: 1px solid #0091ea;
+    cursor: pointer;
+  }
+}

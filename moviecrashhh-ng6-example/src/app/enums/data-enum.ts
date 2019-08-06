@@ -1,5 +1,5 @@
 export enum Data {
-	values,
+	values = '',
 	flag = 0,
 	url = '',
 }

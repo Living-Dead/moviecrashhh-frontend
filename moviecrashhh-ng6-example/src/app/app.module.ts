@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -22,10 +22,30 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BlogComponent } from './components/blog/blog.component';
 import { ArticleViewComponent } from './components/article-view/article-view.component';
-import { ArticlesListChildComponent } from './articles-list-child/articles-list-child.component';
+import { NowPlayingCinemaMovies } from './components/articles-list/now-playing-cinema-movies/now-playing-cinema-movies.component';
 
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
+import { SliderComponent } from './components/slider/slider.component';
+import { SliderItemDirective } from './directives/slider-item.directive';
+
+import { MatIconRegistry, MatIconModule, MatCardModule } from '@angular/material';
+import { CoomingSoonComicBooksComponent } from './components/articles-list/cooming-soon-comic-books/cooming-soon-comic-books.component';
+import { DetailsModalComponent } from './components/articles-list/modal/details-modal/details-modal.component';
+import { SetDatePipe } from './set-date.pipe';
+import { SetReplacePipe } from './set-date.pipe';
+import { SetDatePickerPipe } from './set-date.pipe';
+import { SetDateFormatterPickerPipe } from './set-date.pipe';
+import { SetReleaseYearPipe } from './set-date.pipe';
+import { SetReleaseDatePipe } from './set-date.pipe';
+import { SetImageValidatorPipe } from './set-date.pipe';
+
+import { NgxLoadingModule } from 'ngx-loading';
+import { AcademyAwardWinnersComponent } from './components/articles-list/academy-award-winners/academy-award-winners.component';
+import { TvSeriesComponent } from './components/articles-list/tv-series/tv-series.component';
+import { TvSeriesModalComponent } from './components/articles-list/modal/tv-series-modal/tv-series-modal.component';
+import { PremierMoviesComponent } from './components/articles-list/premier-movies/premier-movies.component';
+import { PremierMoviesModalComponent } from './components/articles-list/modal/premier-movies-modal/premier-movies-modal.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +59,23 @@ import { reducers } from './store/reducers';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ArticlesListChildComponent
+    NowPlayingCinemaMovies,
+    SliderComponent,
+    SliderItemDirective,
+    CoomingSoonComicBooksComponent,
+    DetailsModalComponent,
+    SetDatePipe,
+    SetReplacePipe,
+    SetDatePickerPipe,
+    SetDateFormatterPickerPipe,
+    SetReleaseYearPipe,
+    SetReleaseDatePipe,
+    SetImageValidatorPipe,
+    AcademyAwardWinnersComponent,
+    TvSeriesComponent,
+    TvSeriesModalComponent,
+    PremierMoviesComponent,
+    PremierMoviesModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +85,9 @@ import { reducers } from './store/reducers';
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot(reducers, {}),
+    MatCardModule,
+    MatIconModule,
+    NgxLoadingModule.forRoot({}),
   ],
   providers: [
     ApiService,
@@ -57,6 +96,15 @@ import { reducers } from './store/reducers';
     DataService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ModalTemplateComponent]
+  entryComponents: [
+    ModalTemplateComponent,
+    DetailsModalComponent,
+    TvSeriesModalComponent,
+    PremierMoviesModalComponent,
+  ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg'));
+  }
+}

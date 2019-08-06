@@ -9,11 +9,8 @@ import { ModalTemplateComponent } from '../modal-template/modal-template.compone
   styleUrls: ['./article-view.component.scss']
 })
 export class ArticleViewComponent implements OnInit {
-  public url: string = "";
-  closeResult: string;
-  articleModalData: Object;
+  private url: string = "";
   obj: any;
-  modalRef: any;
 
   constructor(
     private modalService: NgbModal,
@@ -25,12 +22,13 @@ export class ArticleViewComponent implements OnInit {
       keyboard: false
     };
 
-    this.modalService.open(ModalTemplateComponent, ngbModalOptions).result.then((result) => {
-      console.log('result', result);
-
-    }, (reason) => {
-      // TODO
-    });
+    this.modalService
+      .open(ModalTemplateComponent, ngbModalOptions).result
+      .then((result) => {
+        console.log('result', result);
+      }, (reason) => {
+        // TODO
+      });
 
 
   }
@@ -39,11 +37,13 @@ export class ArticleViewComponent implements OnInit {
 
     this.obj = { data: 1000 };
 
-    this.router.events.subscribe(event => {
-      if (this.router.url !== '/article-view/header/2019-01-01') {
-        // close all open modals
-        this.modalService.dismissAll();
-      }
-    });
+    this.router.events
+      .subscribe(event => {
+        if (this.router.url !== '/article-view/header/2019-01-01') {
+          // close all open modals
+          this.modalService
+            .dismissAll();
+        }
+      });
   }
 }

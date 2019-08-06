@@ -1,0 +1,17 @@
+<div *ngIf="this.parent.url[2] === 'comic_book'">
+  <p>
+    Új megjelenő képregények:
+  </p>
+  <app-slider>
+    <div appSliderItem *ngFor="let item of this.cooming_soon_comic_books">
+      <a href="{{item.url}}" target="_blank">
+        <mat-card class="example-card">
+          <img mat-card-image src="{{item.img_url}}" alt="Comic Book image url">
+          <div class="comic-books-header">
+            <div class="comic-book-release-date">{{item.release_date}}</div>
+          </div>
+        </mat-card>
+      </a>
+    </div>
+  </app-slider>
+</div>

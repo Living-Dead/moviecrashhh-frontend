@@ -44,8 +44,9 @@ export class HeaderComponent implements OnInit {
       name: this.headerData,
     }
 
-    this.userData.getState().subscribe(state => {
-      console.log('state', state);
-    })
+    this.userData.getState()
+      .subscribe(state => {
+        console.log('state', state);
+      })
   }
 }

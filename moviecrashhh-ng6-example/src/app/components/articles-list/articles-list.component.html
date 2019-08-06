@@ -1,3 +1,31 @@
+<style>
+  .none {
+    display: none;
+}
+
+.first {
+  display: block !important;
+}
+
+.leftImg {
+  float: left;
+  width: 150px;
+  height: 150px
+}
+
+.rightImg {
+  float: right;
+  width: 150px;
+  height: 150px
+}
+
+.fullWidthImg {
+
+  width: 100%;
+  display: inline-block;
+}
+</style>
+
 <ng-template #content let-modal>
   <div>
     <div>
@@ -29,14 +57,24 @@
 <p>
   article-view works!
 </p>
-<router-outlet></router-outlet>
+<app-tv-series></app-tv-series>
+<app-cooming-soon-comic-books></app-cooming-soon-comic-books>
+<app-now-playing-cinema-movies></app-now-playing-cinema-movies>
+
 <div *ngIf="!this.data$">
   <span> Jelenleg még nincsenek cikkek ebben a kategóriában.</span>
 </div>
-<div *ngFor="let item of this.data$ | keyvalue">
+<div *ngFor="let item of this.data$ | keyvalue; let odd = odd; let even = even; let i = index;">
   --- --- ---
+  <div style="margin: 20px;">
+    <img [className]="((i+1)%5) == 0 ? 'fullWidthImg' : (odd ? 'rightImg' : 'leftImg')" src="https://timedotcom.files.wordpress.com/2014/10/pulp-fiction.jpeg">
   <div>{{item.key | json}}</div>
   <div>{{item.value | json}}</div>
   <p> test ... </p>
+
   <div (click)="open(content, item.value)">Launch demo modal</div>
+
 </div>
+</div>
+
+<app-premier-movies></app-premier-movies>

@@ -8,14 +8,6 @@ import { Router } from '@angular/router';
 
 import { ACTION_LOGIN } from '../../store/action/appAction';
 
-interface appReducerState {
-  login: boolean
-}
-
-const initialState: appReducerState = {
-  login: false,
-  // ...
-}
 
 @Component({
   selector: 'app-login',
@@ -34,16 +26,22 @@ export class LoginComponent implements OnInit {
 
   onSubmit(login: NgForm) {
     this.apiService
-      .getUserDetails(login.value.email, login.value.password)
+      .getUserDetails(
+        {
+          'email': login.value.email,
+          'password': login.value.password
+        })
       .subscribe((data) => {
         this.data$ = data;
         console.log('data', data);
         if (this.data$.success) {
-          this.authService.setLoggedIn(this.data$.success);
-          this.userData.updateState({
-            type: 'LOGIN',
-            name: data.params.user.realname
-          });
+          this.authService
+            .setLoggedIn(this.data$.success);
+          this.userData
+            .updateState({
+              type: ACTION_LOGIN,
+              account: data,
+            });
           this.router.navigate(['/profile']);
         }
       }

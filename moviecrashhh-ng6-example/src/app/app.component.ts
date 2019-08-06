@@ -22,18 +22,23 @@ export class AppComponent {
   }
   account$: any;
 
-  constructor(private apiService: ApiService, private auth: AuthService) {
+  constructor(
+    private apiService: ApiService,
+    private auth: AuthService) {
 
-    this.auth.account().subscribe((data) => {
-      this.account$ = data;
-      Account.user = data;
-      console.log(data);
-      if (!this.account$.account.isLoggedIn) {
-        localStorage.removeItem('loggedIn');
+    this.auth.account()
+      .subscribe((data) => {
+        this.account$ = data;
+        //Account.user = data;
+        console.log(data);
+        if (!this.account$.account.isLoggedIn) {
+          localStorage
+            .removeItem('loggedIn');
+        }
+        this.auth
+          .setLoggedIn(this.account$.account.isLoggedIn);
       }
-      this.auth.setLoggedIn(this.account$.account.isLoggedIn);
-    }
-    );
+      );
   }
 
   ngOnInit() { }

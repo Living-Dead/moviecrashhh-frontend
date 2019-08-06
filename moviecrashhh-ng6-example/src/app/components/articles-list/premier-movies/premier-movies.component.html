@@ -1,0 +1,26 @@
+<div *ngIf="this.cinemaPremiers.length !== 0">
+  <p>
+    Hamarosan a mozikban:
+  </p>
+  <div>
+  <app-slider>
+    <div appSliderItem *ngFor="let item of this.cinemaPremiers">
+      <mat-card (click)="openModal(item)" class="example-card">
+        <img mat-card-image [src]="item.poster_path" alt="Academy Award Winners image url's">
+         <div class="comic-books-header" >
+          <div class="movie-release-date" style="    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">{{item.movie_name}}</div>
+          <div style="font-size: 10px; display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;" class="movie-release-date">{{item.release_date | releaseDate}} | {{item.genre}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </app-slider>
+</div>
+</div>

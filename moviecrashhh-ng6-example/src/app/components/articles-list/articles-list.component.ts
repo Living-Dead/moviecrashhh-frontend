@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 import { Data } from '../../enums/data-enum';
 
+import { ACTION_LISTING } from '../../store/action/appAction';
 
 @Component({
   selector: 'app-articles-list',
@@ -18,8 +19,9 @@ export class ArticlesListComponent implements OnInit {
   closeResult: string;
   articleModalData: Object;
   obj: any;
-  condition: boolean;
   data$: any = [];
+  listingCallApi: any;
+  lists: any;
 
   constructor(
     private router: Router,
@@ -29,9 +31,22 @@ export class ArticlesListComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) {
 
-    if (Data.flag === 0) {
+    dataService
+      .getState()
+      .subscribe(state => {
+        console.log('state', state);
+        this.listingCallApi = state.listing;
+      })
+
+    if (!this.listingCallApi) {
       console.log('----- API CALL ------');
-      Data.values = this.apiService.getData().pipe(map((res) => res));
+      this.lists = this.apiService
+        .getData()
+        .pipe(map((res) => res));
+      this.dataService
+        .updateState({
+          type: ACTION_LISTING
+        });
     }
 
     this.router.routeReuseStrategy
@@ -50,23 +65,22 @@ export class ArticlesListComponent implements OnInit {
 
   private open() {
     this.dataService.set(this.router.url);
-    this.router.navigateByUrl('/article-view/header/2019-01-01');
+    this.router
+      .navigateByUrl('/article-view/header/2019-01-01');
   }
 
-  private favourite(data: any): any {
-    console.log('click', data);
-    // TODO
-    // call apiService
-    // websocket maybe
-  }
+  
+
+  /*private favourite(data: any): any {
+    //console.log('click', data);
+  }*/
 
   ngOnInit() {
     console.log('url', this.router.url);
     this.url = this.router.url.split("/");
 
-    Data.values
+    this.lists
       .subscribe((data) => {
-        Data.flag = 1;
         for (let entry in data) {
           if (data[entry].type === this.url[2]) {
             if (typeof this.url[3] !== 'undefined') {

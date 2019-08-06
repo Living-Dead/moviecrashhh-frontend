@@ -10,10 +10,7 @@ export class FooterComponent implements OnInit {
   @Input('footer') footerData: any;
 
 
-  constructor() {
-
-
-  }
+  constructor() { }
 
   ngOnInit() {
     this.footer = {

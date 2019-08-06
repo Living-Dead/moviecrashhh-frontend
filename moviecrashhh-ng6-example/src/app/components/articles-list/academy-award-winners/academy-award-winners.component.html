@@ -1,0 +1,19 @@
+<div *ngIf="this.academyAwardWinners.length !== 0">
+  <p>
+    Hamarosan a mozikban:
+  </p>
+  <div>
+  <app-slider>
+    <div appSliderItem *ngFor="let item of this.academyAwardWinners">
+      <mat-card (click)="openModal(item)" class="example-card">
+        <img mat-card-image [src]="item.poster_path" alt="Academy Award Winners image url's">
+        <div class="academy-award-winner-description" >
+
+        </div>
+      </mat-card>
+    </div>
+  </app-slider>
+</div>
+</div>
+
+<span *ngIf="this.academyAwardWinners.length === 0">Sajnos a {{this.parent.url[3]}} kategóriában nincsen megjeleníthető premier.</span>

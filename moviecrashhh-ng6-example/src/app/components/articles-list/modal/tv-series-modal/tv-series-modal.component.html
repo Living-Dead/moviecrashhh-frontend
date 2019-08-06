@@ -1,0 +1,268 @@
+<style type="text/css" media="screen">
+input[type=checkbox] {
+  display: none;
+}
+
+input[type=checkbox]:checked~.remove-check {
+  display: none;
+}
+
+
+input[type=checkbox]:checked~#email {
+  display: block;
+}
+
+input[type=checkbox]:checked~#email2 {
+  display: block;
+}
+
+#email {
+  display: none;
+}
+
+.email2 {
+  display: none;
+}
+
+.displayInline {
+  display: inline;
+}
+
+.dateText {
+  text-transform: capitalize;
+}
+
+.show-times {
+   float: left;
+    padding: 5px 10px;
+    margin: 0 3px 3px 0; 
+    background-color:
+    orange; color: white;
+  }
+
+  .disabled {
+   float: left;
+    padding: 5px 10px;
+    margin: 0 3px 3px 0; 
+    background-color: grey;
+    color: black;
+  }
+
+
+.grid { 
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-gap: 5px;
+  align-items: stretch;
+  }
+.grid img {
+  border: 1px solid #ccc;
+  max-width: 100%;
+}
+
+h2 {
+  color: $white;
+}
+
+h2 {
+  color: $white;
+}
+
+
+
+</style>
+<div>
+
+    <figcaption>
+      <!--<span style="    display: inline-block;
+    width: 100%; font-size: 18px;"> {{ this.movie.movie_name }} </span>-->
+       <span> {{this.runtime}} </span>
+    </figcaption>
+    <div>
+      <div style="position: relative;">
+        <a href="{{this.movie.data.official_website}}" target="_blank">
+          <img style="position: absolute; bottom: 30px; right: 15px; width: 60px;" src="images/{{this.network}}.png">
+        </a>
+      <img style=" width: 100%;
+  height: auto;" src="https://image.tmdb.org/t/p/original/{{this.movie.data.backdrop_path}}">
+                <div style="position: absolute; bottom: 30px; left: 15px;">
+          <div style="float: left; margin-right: 15px;">
+            <a style="color: white;" href="{{this.imdbUrl}}" target="_blank">
+              <img src="images/imdb.png">
+            </a>
+          </div>
+<!--
+          <div style="    top: 2px;
+    position: absolute;
+    left: 170px;
+    color: white;
+    white-space: nowrap;">
+              {{this.runtime}}
+
+          </div>
+        -->
+          <div *ngIf="this.movie.data.imdb_rate !== 'N/A' && this.movie.data.imdb_rate !== null && this.movie.data.imdb_rate !== null" style="    top: 0;
+    left: 100px;
+    white-space: nowrap;
+    color: white;
+    position: absolute;">
+            <span style="font-size: 24px;
+    font-weight: normal;
+    font-family: Arial;
+    line-height: 24px;"> {{ this.movie.data.imdb_rate }} </span>
+            <span style="    color: white;
+    font-size: 10px;">/10</span>
+            <div style="    top: 20px;
+    position: absolute;
+    left: 0;
+    color: white;
+    white-space: nowrap;">
+            <span *ngIf="this.movie.data.imdb_vote !== 'N/A'" style="font-size: 14px; display: block;"> {{this.movie.data.imdb_vote }} </span>
+          </div>
+          </div>
+        </div>
+        </div>
+      <h2 class="modal-title text-center" id="modal-basic-title">{{ this.movie.data.movie_name }}</h2>
+      <h5 class="modal-title text-center" id="modal-basic-original-title">/{{ this.movie.data.originalname }}/</h5>
+      <div class="close modal-close" aria-label="Close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div class="modal-body">
+      <div class="synopsis-of-the-film">
+        <span> {{ this.movie.data.description }} </span>
+
+      </div>
+
+      <div> {{ this.movie.data.episode_numbers }} epizód</div>
+
+      <div style="display: inline-block;" *ngFor="let season of this.seasonNumbers">
+        <span style="margin-right: 5px;" (click)="selectSeason(season)">{{season}}</span>
+      </div>
+
+      <div *ngFor="let episodeForSeason of this.episodeList">
+        <span> {{episodeForSeason.name}}</span>
+      </div>
+
+      <section class="modal-movie-trailer-section">
+
+      <div class="video-grid loading">
+        <div class="video-item">
+          <div class="video-wrap" style="height: 360px;">
+            <iframe id="youtubeVideo" [src]="this.first" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div style="width: 250px; overflow: hidden; height: 360px;">
+          <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
+            <div class="video-item container">
+              <div class="video-wrap" *ngFor="let item of this.movieTrailer">
+                <iframe id="youtubeVideo" [src]="item" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+              </div>
+            </div>
+          </ul>
+        </div>
+           <ngx-loading [show]="this.loading" [config]="{animationType: ngxLoadingAnimationTypes.circleSwish, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}"
+      [template]="loadingTemplate"></ngx-loading>
+
+</div>
+      <h5> Képek </h5>
+      <div style="position: relative;">
+      <div class="scrolling-wrapper">
+        <div class="pic-scroll" *ngFor="let picture of this.movie.episode.pictures">
+          <img class="episode-picture" src="{{picture}}">
+  
+        </div>
+      
+      </div>
+      <div id="picture-prev" class="arrows prev" (click)="onClickLeft()"></div>
+      <div id="picture-next" class="arrows next" (click)="onClickRight()"></div>
+    </div>
+  
+  </section>
+
+  <section>
+
+      <h2> STÁBLISTA </h2>
+      <section>
+        <h5> Rendező </h5>
+        <span> {{ this.movie.data.director }}</span>
+      </section>
+      <div>
+        <h5> Forgatókönyv </h5>
+        <span> {{ this.movie.data.writer }}</span>
+      </div>
+      <div>
+        <h5> Szereposztás</h5>
+
+        <div class="container">
+  <div class="row" *ngFor="let actor of this.actors" style="
+      margin-bottom: 10px;">
+    <div class="col">
+<a href="{{this.actorImdbUrl}}{{actor.imdb_id}}" target="_blank">
+     <div class="draw avatar" style="display: inline-block;">
+       
+              <img *ngIf="(actor.actor_avatar_img | imageValidator) === 'tmdb'" src="https://image.tmdb.org/t/p/original{{actor.actor_avatar_img}}">
+              <img *ngIf="(actor.actor_avatar_img | imageValidator) === 'imdb'" src="{{actor.actor_avatar_img}}">
+              <img *ngIf="actor.actor_avatar_img === null" src="images/no_avatar.png">
+             
+            </div>
+          </a>
+            <div style="padding: 4px 6px 6px; display: inline-block;"> {{actor.actor_name}} </div>
+    </div>
+    <div class="col">
+ <div style="padding: 15px 6px 6px; display: inline-block;"> {{actor.character}} </div>
+    </div>
+    <div class="col">
+ <div style="padding: 15px 6px 6px; display: inline-block;"> {{actor.episode}} </div>
+    </div>
+  </div>
+</div>
+<!--
+        <div *ngFor="let actor of this.actors | slice:0:show; " style="margin: 5px;">
+             <a *ngIf="actor.imdb_id !== null" href="{{this.actorImdbUrl}}{{actor.imdb_id}}" target="_blank">
+       
+        <div class="avatar" style="display: inline-block;">
+       
+              <img *ngIf="actor.actor_avatar_img !== null" src="{{actor.actor_avatar_img}}">
+              <img *ngIf="actor.actor_avatar_img === null" src="images/no_avatar.png">
+             
+            </div>
+            <div style="padding: 4px 6px 6px; display: inline-block;"> {{actor.actor_name}} </div>
+                 </a>
+
+        </div> 
+        <div *ngIf="show < actorsCount" (click)="increaseShow()">DropDown Button</div>
+            <ngx-loading [show]="this.loading1" [config]="{animationType: ngxLoadingAnimationTypes.circleSwish, primaryColour: primaryColour, secondaryColour: secondaryColour, backdropBorderRadius: '3px'}"
+      [template]="loadingTemplate"></ngx-loading>
+    -->
+
+      </div>
+      <div>
+        <h5> Gyártó </h5>
+        <span> {{ this.movie.data.production }}</span>
+      </div>
+    </section>
+
+      <section style="display: block;">
+   <div *ngFor="let tvSchedule of this.tvScheduleList">
+    <span> {{tvSchedule.title}} </span>
+    <span> {{tvSchedule.channel}} </span>
+    <span> {{tvSchedule.day}} </span>
+    <span> {{tvSchedule.summary}} </span>
+    <span> {{tvSchedule.start}} </span>
+   </div>
+    </section>
+
+  </div>
+  <div class="favourite">
+    <i class="mdi mdi-star"></i>
+  </div>
+</div>
+

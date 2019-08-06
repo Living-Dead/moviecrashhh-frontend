@@ -1,0 +1,61 @@
+p {
+  font-family: Lato;
+}
+
+.example-card {
+  max-width: 140px;
+  margin: 5px;
+}
+
+img {
+  height: 200px;
+  object-fit: cover;
+}
+
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+
+.example-card {
+
+
+  .academy-award-winner-description {
+
+    .academy-award-winner-category-name {
+      color: lightblue;
+      display: block;
+      font-weight: bold;
+      font-size: 10px;
+      display: inline-block;
+      width: 100%;
+
+    }
+
+    .academy-award-winner-academy-year {
+      color: lightblue;
+      display: block;
+      font-size: 10px;
+      display: inline-block;
+      width: 100%;
+
+    }
+
+    .academy-award-winner-nominee-name {
+      font-size: 10px;
+      color: lightgreen;
+      display: inline-block;
+      width: 100%;
+
+    }
+
+    .academy-award-winner-post-title {
+      font-size: 12px;
+      color: white;
+      display: inline-block;
+      width: 100%;
+
+
+    }
+  }
+}

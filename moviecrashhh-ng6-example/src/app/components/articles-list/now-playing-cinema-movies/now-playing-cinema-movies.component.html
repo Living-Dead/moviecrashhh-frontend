@@ -1,0 +1,24 @@
+<div *ngIf="this.parent.url[2] === 'movie'">
+  <p>
+    Most játszák:
+  </p>
+  <app-slider>
+    <div appSliderItem *ngFor="let item of this.now_playing">
+      <mat-card (click)="openModal(item)" class="example-card">
+        <img class="slider-img" mat-card-image [src]="item.image" alt="Movie image url's">
+        <div class="comic-books-header" >
+          <div class="movie-release-date" style="    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">{{item.movie_name}}</div>
+          <div style="font-size: 10px; display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;" class="movie-release-date">{{item.release_date}} | {{item.genre}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </app-slider>
+</div>

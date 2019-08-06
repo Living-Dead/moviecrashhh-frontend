@@ -1,0 +1,15 @@
+<section class="slider-section">
+	<div class="slider-container">
+	  <div class="slides" #slides>
+	    <ng-content select="[appSliderItem]" #sliderItem></ng-content>
+	  </div>
+	  <div class="controls">
+	    <div class="arrows prev" (click)="onClickLeft()">
+	    	<span></span>
+	    </div>
+	    <div class="arrows next" (click)="onClickRight()">
+	    	<span></span>
+	    </div>
+	  </div>
+	</div>
+</section>

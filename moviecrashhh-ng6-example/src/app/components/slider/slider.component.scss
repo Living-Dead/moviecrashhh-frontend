@@ -1,0 +1,57 @@
+.slider-section {
+  position: relative;
+  background-color: black;
+
+  .slider-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 80px;
+    margin-left: 80px;
+    padding-top: 30px;
+
+    .slides {
+      display: flex;
+      overflow-x: scroll;
+      // This is not supported by all browsers. If you want a different animation, please feel free
+      // to find your own solution.
+      scroll-behavior: smooth;
+
+      &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+    }
+
+    .arrows {
+      color: white;
+      width: 48px;
+      height: 48px;
+      border-color: #000;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    .prev {
+      top: 40%;
+      left: 20px;
+      border-bottom: 6px solid;
+      border-left: 6px solid;
+      transform: rotate(45deg);
+    }
+
+
+    .next {
+      top: 40%;
+      right: 20px;
+      border-bottom: 6px solid;
+      border-left: 6px solid;
+      transform: rotate(-135deg);
+    }
+  }
+}

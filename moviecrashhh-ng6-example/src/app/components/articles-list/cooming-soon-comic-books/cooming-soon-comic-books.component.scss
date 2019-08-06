@@ -1,0 +1,26 @@
+p {
+  font-family: Lato;
+}
+
+.example-card {
+  max-width: 140px;
+  margin: 5px;
+}
+
+img {
+	height: 200px;
+}
+
+[appSliderItem] {
+  flex-shrink: 0;
+}
+
+.comic-book-name {
+	color: white;
+	display: block;
+}
+
+.comic-book-release-date {
+	color: lightblue;
+	display: block;
+}

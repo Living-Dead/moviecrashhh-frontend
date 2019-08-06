@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+	production: false,
+	apiUrl: 'http://localhost:8080',
+	imdbUrl: 'https://www.imdb.com/title/',
+	//movieGLUApiKey: '0FVxUXDZ5h1InkQH5gDQz5ryvFUD0aMapq5z5uH2',
 };
 
 /*

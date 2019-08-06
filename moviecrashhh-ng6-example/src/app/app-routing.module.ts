@@ -7,7 +7,8 @@ import { ArticlesListComponent } from './components/articles-list/articles-list.
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ArticlesListChildComponent } from './articles-list-child/articles-list-child.component';
+import { NowPlayingCinemaMovies } from './components/articles-list/now-playing-cinema-movies/now-playing-cinema-movies.component';
+import { CoomingSoonComicBooksComponent } from './components/articles-list/cooming-soon-comic-books/cooming-soon-comic-books.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
@@ -27,7 +28,10 @@ const routes: Routes = [
 		children:
 			[
 				{
-					path: ':id', component: ArticlesListChildComponent
+					path: ':id', component: NowPlayingCinemaMovies,
+				},
+				{
+					path: ':id', component: CoomingSoonComicBooksComponent,
 				},
 			]
 	},

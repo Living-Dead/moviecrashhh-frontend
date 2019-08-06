@@ -1,0 +1,24 @@
+<div *ngIf="this.parent.url[2] === 'series'">
+  <p>
+    Ajanlo:
+  </p>
+  <app-slider>
+    <div appSliderItem *ngFor="let item of this.tv_series">
+      <mat-card (click)="openModal(item)" class="example-card">
+        <img class="slider-img" mat-card-image src="https://images.justwatch.com{{item.image}}s332" alt="Movie image url's">
+        <div class="comic-books-header" >
+          <div class="movie-release-date" style="    display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;">{{item.movie_name}}</div>
+          <div style="font-size: 10px; display: block;
+    max-width: 98%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;" class="movie-release-date">{{item.release_date | releaseYear}} | {{item.genre}}</div>
+        </div>
+      </mat-card>
+    </div>
+  </app-slider>
+</div>
